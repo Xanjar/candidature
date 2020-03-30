@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('inscription','InscriptionController@afficher');
+Route::post('inscription','InscriptionController@traiter')->name('inscription');
+
+Route::get('connexion','ConnexionController@afficher');
+Route::post('connexion','ConnexionController@traiter')->name('connexion');
