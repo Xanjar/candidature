@@ -22,7 +22,7 @@
 
     <div class="form-group">
         <label for="prenom">Prénom</label>
-        <input required name="prenom" class="form-control" id="prenom" placeholder="Prénom" value="{{old('date')}}">
+        <input required name="prenom" class="form-control" id="prenom" placeholder="Prénom" value="{{old('prenom')}}">
         @if($errors->has('prenom'))
             <p>{{$errors->first('prenom')}}</p>
         @endif
@@ -35,10 +35,10 @@
         @endif
     </div>
     <div class="form-group">
-        <label for="date">Date de naissance</label>
-        <input required name="date_de_naissance" type="date" class="form-control" id="date" placeholder="01/01/2000" value="{{old('date')}}">
-        @if($errors->has('date'))
-            <p>{{$errors->first('date')}}</p>
+        <label for="date_de_naissance">Date de naissance</label>
+        <input required name="date_de_naissance" type="date" class="form-control" id="date" placeholder="01/01/2000" value="{{old('date_de_naissance')}}">
+        @if($errors->has('date_de_naissance'))
+            <p>{{$errors->first('date_de_naissance')}}</p>
         @endif
     </div>
     <div class="form-group">

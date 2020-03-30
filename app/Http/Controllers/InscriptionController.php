@@ -15,30 +15,31 @@ class InscriptionController extends Controller
         request()->validate([
             'nom'=>['required'],
             'prenom'=>['required'],
-            'date'=>['required'],
+            'date_de_naissance'=>['required'],
+            'email'=>['required'],
             'num'=>['required'],
             'cni'=>['required'],
             'password'=> ['required','confirmed','min:8'],
             'password_confirmation' => ['required'],
         ]);
-
         try {
-            if(Utilisateur::where('email',request('email'))->count()){
+            if(Utilisateur::where('mail',request('email'))->count()){
                 $data['echec']='L\'email existe déjà';
                 return view('inscription/inscription',$data);
             }
 
             $inscrit = new Utilisateur;
             $inscrit->nom=request('nom');
+            $inscrit->mail=request('email');
             $inscrit->prenom=request('prenom');
-            $inscrit->date_de_naissance=request('date');
+            $inscrit->date_de_naissance=request('date_de_naissance');
             $inscrit->telephone=request('num');
             $inscrit->password=bcrypt(request('password'));
             $inscrit->profil='etu';
             $inscrit->cni=request('cni');
             $inscrit->save();
         } catch(\Illuminate\Database\QueryException $e){
-            $data['echec']='Echec dans l\'inscription';
+            $data['echec']='Echec dans l\'inscription'.$e;
             return view('welcome',$data);
         }
         $data['succes']='Vous êtes inscrit';
