@@ -6,6 +6,9 @@
 
     <h3>Vous êtes bien connecté.</h3>
 
+    <a href="/dossier/deposer" class="btn btn-info">Déposer dossier</a>
+
+
     <a href="/deconnexion" class="btn btn-primary">Se déconnecter</a>
 </div>
 @endsection

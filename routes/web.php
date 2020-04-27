@@ -27,5 +27,6 @@ Route::group(['middleware' =>[ 'web']], function () {
 
 Route::group(['middleware' => [App\Http\Middleware\CheckConnexion::class]], function () {
     Route::get('profil','ProfilController@afficher');
-    
+    Route::get('dossier/deposer','DossierController@afficher');
+    Route::post('dossier/deposer','ConnexionController@traiter')->name('deposer');
 });
