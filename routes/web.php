@@ -11,12 +11,21 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('inscription','InscriptionController@afficher');
-Route::post('inscription','InscriptionController@traiter')->name('inscription');
+Route::group(['middleware' =>[ 'web']], function () {
+    Route::get('inscription','InscriptionController@afficher');
+    Route::post('inscription','InscriptionController@traiter')->name('inscription');
 
-Route::get('connexion','ConnexionController@afficher');
-Route::post('connexion','ConnexionController@traiter')->name('connexion');
+    Route::get('connexion','ConnexionController@afficher');
+    Route::post('connexion','ConnexionController@traiter')->name('connexion');
+    Route::get('deconnexion', 'ProfilController@deconnexion');
+});
+
+Route::group(['middleware' => [App\Http\Middleware\CheckConnexion::class]], function () {
+    Route::get('profil','ProfilController@afficher');
+    
+});

@@ -57,14 +57,14 @@
     </div>
     <div class="form-group">
         <label for="password">Mot de passe</label>
-        <input required name="password" class="form-control" id="password">
+        <input type="password" required name="password" class="form-control" id="password">
         @if($errors->has('password'))
             <p>{{$errors->first('password')}}</p>
         @endif
     </div>
     <div class="form-group">
         <label for="password_confirmation">Confirmation du mot de passe</label>
-        <input required name="password_confirmation" class="form-control" id="password_confirmation">
+        <input type="password" required name="password_confirmation" class="form-control" id="password_confirmation">
         @if($errors->has('password_confirmation'))
             <p>{{$errors->first('password_confirmation')}}</p>
         @endif
