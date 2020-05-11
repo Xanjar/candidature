@@ -13,6 +13,11 @@
 
 
 Route::get('/', function () {
+    if(Session::has('utilisateur')){
+        if(Session::get('utilisateur')->profil === 'etu'){
+            return redirect()->route('profil');
+        }
+    }
     return view('welcome');
 });
 
@@ -26,7 +31,10 @@ Route::group(['middleware' =>[ 'web']], function () {
 });
 
 Route::group(['middleware' => [App\Http\Middleware\CheckConnexion::class]], function () {
-    Route::get('profil','ProfilController@afficher');
-    Route::get('dossier/deposer','DossierController@afficher');
-    Route::post('dossier/deposer','ConnexionController@traiter')->name('deposer');
+    Route::get('profil','ProfilController@afficher')->name('profil');
+    Route::get('dossier/gerer','DossierController@afficher');
+    Route::post('dossier/deposer','DossierController@creer');
+    Route::post('dossier/modifier','DossierController@modifier');
+    Route::get('profil/modifier','ProfilController@afficherModif');
+    Route::post('profil/modifier','ProfilController@modifier');
 });

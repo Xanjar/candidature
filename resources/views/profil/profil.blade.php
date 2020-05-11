@@ -4,9 +4,11 @@
 <div class="container">
     <h1>Mon compte</h1>
 
-    <h3>Vous êtes bien connecté.</h3>
+<h3>Bienvenue {{$utilisateur->nom}} {{$utilisateur->prenom}}</h3>
 
-    <a href="/dossier/deposer" class="btn btn-info">Déposer dossier</a>
+
+    <a href="/profil/modifier" class="btn btn-info">Modifier profil</a>
+    <a href="/dossier/gerer" class="btn btn-info">Gérer dossier</a>
 
 
     <a href="/deconnexion" class="btn btn-primary">Se déconnecter</a>
