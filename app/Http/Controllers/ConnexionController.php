@@ -27,7 +27,13 @@ class ConnexionController extends Controller
         if(auth()->check()){
             //dd(auth()->user());
             Session::put('utilisateur', auth()->user());
-            return redirect('/profil');
+            if(auth()->user()->first_connexion){
+                $utilisateur=array();
+                $utilisateur['first_connexion']=0;
+                Utilisateur::where('id_utilisateur',auth()->user()->id_utilisateur)->update($utilisateur);
+                return redirect('/prof/modifmdp');
+            }
+            return redirect('/');
         }
 
         $data['echec']='Vos identifiants sont incorrects';

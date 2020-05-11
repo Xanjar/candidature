@@ -7,6 +7,7 @@ use App\Formation;
 use App\Dossier;
 use Illuminate\Http\Request;
 use Session;
+
 class DossierController extends Controller
 {
     public function afficher(){

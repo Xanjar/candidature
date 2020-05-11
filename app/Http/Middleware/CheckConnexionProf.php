@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Session;
-class CheckConnexion
+class CheckConnexionProf
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class CheckConnexion
     public function handle($request, Closure $next)
     {
         if (Session::has('utilisateur')) {
-            if(Session::get('utilisateur')->profil === 'etu'){
+            if(Session::get('utilisateur')->profil === 'prof'){
                 return $next($request); 
             }
             return redirect('/');

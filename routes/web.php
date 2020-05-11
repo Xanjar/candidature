@@ -17,6 +17,9 @@ Route::get('/', function () {
         if(Session::get('utilisateur')->profil === 'etu'){
             return redirect()->route('profil');
         }
+        if(Session::get('utilisateur')->profil === 'prof'){
+            return redirect()->route('liste');
+        }
     }
     return view('welcome');
 });
@@ -37,4 +40,12 @@ Route::group(['middleware' => [App\Http\Middleware\CheckConnexion::class]], func
     Route::post('dossier/modifier','DossierController@modifier');
     Route::get('profil/modifier','ProfilController@afficherModif');
     Route::post('profil/modifier','ProfilController@modifier');
+});
+
+Route::group(['middleware' => [App\Http\Middleware\CheckConnexionProf::class]], function () {
+    Route::get('prof/liste', 'ProfController@afficher')->name('liste');
+    Route::post('prof/statut/{idutilisateur}', 'ProfController@statut');
+    Route::get('prof/doc/{type}/{idutilisateur}', 'ProfController@fichier');
+    Route::get('prof/modifmdp', 'ProfController@afficherModifMdp');
+    Route::post('prof/modifmdp', 'ProfController@modifMdp');
 });

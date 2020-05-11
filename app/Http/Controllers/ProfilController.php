@@ -57,13 +57,13 @@ class ProfilController extends Controller
                 $utilisateur['password']=bcrypt(request('password'));
             }
             $utilisateur['cni']=request('cni');
-            utilisateur::where('id_utilisateur',$util->id_utilisateur)->update($utilisateur);
+            Utilisateur::where('id_utilisateur',$util->id_utilisateur)->update($utilisateur);
         
         } catch(\Illuminate\Database\QueryException $e){
             $data['echec']='Echec dans la modification'.$e;
             return view('profil/modifier',$data);
         }
-        $data['success']='Vous êtes inscrit';
+        $data['success']='Modification réussi';
         $data['utilisateur'] = Utilisateur::where('id_utilisateur',$util->id_utilisateur)->first();
         return view('profil/modifier',$data);
     }

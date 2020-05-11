@@ -27,6 +27,15 @@ class InscriptionController extends Controller
                 $data['echec']='L\'email existe déjà';
                 return view('inscription/inscription',$data);
             }
+            if(Utilisateur::where('cni',request('cni'))->count()){
+                $data['echec']='Ce cni est déjà attribué';
+                return view('inscription/inscription',$data);
+            }
+            if(Utilisateur::where('telephone',request('num'))->count()){
+                $data['echec']='Ce numéro de téléphone est déjà attribué';
+                return view('inscription/inscription',$data);
+            }
+
 
             $inscrit = new Utilisateur;
             $inscrit->nom=request('nom');
