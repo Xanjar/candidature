@@ -20,6 +20,9 @@ Route::get('/', function () {
         if(Session::get('utilisateur')->profil === 'prof'){
             return redirect()->route('liste');
         }
+        if(Session::get('utilisateur')->profil === 'admin'){
+            return redirect()->route('admin');
+        }
     }
     return view('welcome');
 });
@@ -48,4 +51,9 @@ Route::group(['middleware' => [App\Http\Middleware\CheckConnexionProf::class]], 
     Route::get('prof/doc/{type}/{idutilisateur}', 'ProfController@fichier');
     Route::get('prof/modifmdp', 'ProfController@afficherModifMdp');
     Route::post('prof/modifmdp', 'ProfController@modifMdp');
+});
+
+Route::group(['middleware' => [App\Http\Middleware\CheckConnexionAdmin::class]], function () {
+    Route::get('admin','AdminController@afficher')->name('admin');
+    Route::post('admin','AdminController@ajouter');
 });
