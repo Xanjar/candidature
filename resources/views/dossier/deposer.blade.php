@@ -70,6 +70,11 @@
       </div>
 
       <div class="form-group">
+        <label for="identite">Carte d'identité</label>
+        <input name="identite" type="file" class="form-control" id="identite" placeholder="Ajouter CNI">
+      </div>
+
+      <div class="form-group">
         <label></label>
         <textarea name="commentaire" class="form-control" id="commentaire" placeholder="Commentaires">@if(!empty($dossier['commentaire'])){{$dossier['commentaire']}}@endif</textarea>
       </div>

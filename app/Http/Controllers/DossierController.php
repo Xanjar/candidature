@@ -38,6 +38,7 @@ class DossierController extends Controller
             $releve=$req->releve;
             $screenshot=$req->screenshot;
             $formulaire=$req->formulaire;
+            $identite=$req->identite;
             if($cv!=null){
                 $dossier->cv = $req->cv->storeAs($id, 'cv.'.$cv->extension());
             }
@@ -64,6 +65,12 @@ class DossierController extends Controller
             }
             if($formulaire!=null){
                 $dossier->formulaire = $formulaire->storeAs($id,'formulaire.'.$cv->extension());
+            }
+            else{
+                $dossier->id_status=2;
+            }
+            if($identite!=null){
+                $dossier->identite = $identite->storeAs($id,'identite.'.$cv->extension());
             }
             else{
                 $dossier->id_status=2;
@@ -96,6 +103,7 @@ class DossierController extends Controller
             $releve=$req->releve;
             $screenshot=$req->screenshot;
             $formulaire=$req->formulaire;
+            $identite=$req->identite;
             if($cv!=null){
                 $dossier['cv'] = $req->cv->storeAs($id, 'cv.'.$cv->extension());
             }
@@ -126,6 +134,13 @@ class DossierController extends Controller
             elseif($ancien->formulaire==null){
                 $dossier['id_status']=2;
             }
+            if($identite!=null){
+                $dossier['identite'] = $identite->storeAs($id,'identite.'.$identite->extension());
+            }
+            elseif($ancien->identite==null){
+                $dossier['id_status']=2;
+            }
+
             Dossier::where('id_utilisateur',$id)->update($dossier);
         } catch(\Illuminate\Database\QueryException $e) {
             $data['echec']='Echec dans l\'envoi du dossier';

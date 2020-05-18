@@ -32,6 +32,7 @@
                     <th>Lettre de motivation</th>
                     <th>Relevé de notes</th>
                     <th>Screenshot</th>
+                    <th>Formulaire</th>
                     <th>Carte d'identité</th>
                     <th>Statut</th>
                     <th>Commentaire</th>
@@ -46,6 +47,7 @@
                     <td><a class="btn btn-info" href="/prof/doc/lettremotiv/{{$d['id_utilisateur']}}">Voir</a></td>
                     <td><a class="btn btn-info" href="/prof/doc/releve/{{$d['id_utilisateur']}}">Voir</a></td>
                     <td><a class="btn btn-info" href="/prof/doc/screenshot/{{$d['id_utilisateur']}}">Voir</a></td>
+                    <td><a class="btn btn-info" href="/prof/doc/formulaire/{{$d['id_utilisateur']}}">Voir</a></td>
                     <td><a class="btn btn-info" href="/prof/doc/identite/{{$d['id_utilisateur']}}">Voir</a></td>
                     <td>
                         <form action="/prof/statut/{{$d['id_utilisateur']}}" method="post" class="form-inline">

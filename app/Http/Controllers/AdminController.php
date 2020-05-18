@@ -28,6 +28,7 @@ class AdminController extends Controller
             $inscrit->mail=request('email');
             $inscrit->password=bcrypt('motdepasse');
             $inscrit->profil='prof';
+            $inscrit->first_connexion=1;
             $inscrit->save();
         } catch(\Illuminate\Database\QueryException $e){
             $data['echec']='Echec dans l\'ajout'.$e;

@@ -101,6 +101,12 @@ class ProfController extends Controller
                 return view('prof/liste',$data);
             }
         }
+        else if($type==='formulaire'){
+            $path = Dossier::where('id_utilisateur',$idutilisateur)->first()->formulaire;
+            if($path===null){
+                return view('prof/liste',$data);
+            }
+        }
 
 
         return Storage::download($path);
